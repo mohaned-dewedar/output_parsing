@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.Chatbot {
+  width: 300px;
+  height: 500px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.Chatbot .header {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.Chatbot .messages {
+  flex-grow: 1;
+  overflow: auto;
+}
+
+.Chatbot .input {
+  border-top: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.Chatbot .input input {
+  flex-grow: 1;
+  border: none;
+  padding: 5px;
+}
+
+.Chatbot .input button {
+  margin-left: 5px;
+  padding: 5px 10px;
+  border: none;
+  color: white;
+  background-color: #007bff;
+  cursor: pointer;
+}
