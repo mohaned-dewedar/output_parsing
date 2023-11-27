@@ -22,7 +22,7 @@ def chat():
     template = f"Answer the user query.\n{format_instructions}\n{user_message}\n"
     response = final_model.invoke(template)
     user_output = DatabaseOps.save_to_mongodb(response, question=user_message)
-    return jsonify(response_message)
+    return jsonify(response.model_dump_json())
 
 def process_message(message):
     # Placeholder for your AI logic
