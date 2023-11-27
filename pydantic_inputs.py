@@ -5,7 +5,6 @@ class Condition(BaseModel):
     field: str = Field(..., description="The field specified")
     operator: str = Field(..., description="The operator to use [==, !=, in, >, <, etc.]")
     value: Union[Any, List[Any]] = Field(..., description="The value or list of values to compare with")
-    data_type: str = Field(..., description="Type of the value [int, str, bool, etc.]")
     sub_conditions: List['Condition'] = Field(default_factory=list, description="Nested sub-conditions")
 
 Condition.model_rebuild()
