@@ -11,12 +11,12 @@ Condition.model_rebuild()
 
 class Outcome(BaseModel):
     field: str = Field(..., description="Claims amount or somehting else")
-    operator: Optional[str] = Field(default=None, description="Mathematical operation to apply [+,-,*,/]")
+    operator: str = Field(description="Mathematical operation to apply [+,-,*,/] or ==")
     value: Union[float, str] = Field(..., description="The value or factor to be applied in the operation")
 
 class Rule(BaseModel):
     conditions: List[Condition] = Field(..., description="List of conditions")
-    condition_operator: str = Field(..., description="The operator to use [and, or, etc.]")
+    condition_operator: Optional[str] = Field(None, description="The operator to use [and, or, etc.]")
     outcome: Outcome
 
 class Rules(BaseModel):
