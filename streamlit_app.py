@@ -10,6 +10,10 @@ import logging
 
 @st.cache_resource()
 def setup_once():
+    """
+    Setup the language model, parser and format instructions
+    Will be cached for the lifetime of the streamlit app
+    """
     load_dotenv()
     model_name = 'gpt-4-1106-preview'
     # model_name = 'gpt-3.5-turbo'
@@ -23,6 +27,17 @@ def setup_once():
 
 
 def process_and_save_rule(question,prompt, final_model,model_name):
+    """
+    Process the rule and save it to MongoDB
+    args: 
+        question: Question for which the rules are generated
+        prompt: Prompt for the rule
+        final_model: Final model to generate the rule
+        model_name: Name of the OpenAI model
+    returns:
+        user_output: User output as a dictionary
+        message_id: Unique message ID    
+    """
     try:
         response = final_model.invoke(prompt)
         user_output, message_id = DatabaseOps.save_to_mongodb(response, question=question,model_name=model_name)
@@ -35,6 +50,14 @@ def process_and_save_rule(question,prompt, final_model,model_name):
         return None, None
 
 def create_rule(llm, parser, format_instructions,model_name):
+    """
+    Create a rule
+    args:
+        llm: Language model
+        parser: Parser to parse the output
+        format_instructions: Instructions to format the rule
+        model_name: Name of the OpenAI model
+    """
     if prompt := st.chat_input():
         st.chat_message("user").write(prompt)
         template = f"Answer the user query.\n{format_instructions}\n{prompt}\n"

@@ -8,12 +8,18 @@ from typing import List
 from datetime import datetime
 
 class DatabaseOps():
+    """
+    Class to handle all database operations
+    """
     client = None
     db = "YouDBName"
     collection = "YourCollectionName"
 
     @classmethod
     def connect(cls):
+        """
+        Connect to MongoDB Atlas
+        """
         cls.connection_string = os.getenv("MONGO_CONNECTION_STRING")
         if cls.client is None:
             logging.info("Connecting to MongoDB")
@@ -24,6 +30,17 @@ class DatabaseOps():
 
     @classmethod
     def save_to_mongodb(cls,rules: List[BaseModel], question:str,model_name:str):
+        """
+        Save the rules to MongoDB
+        args: 
+            rules: List of rules
+            question: Question for which the rules are generated
+            model_name: Name of the OpenAI model
+
+        returns: 
+            rules: List of rules as a dictionary
+            message_id: Unique message ID        
+        """
         
         cls.connect()
         # Select the database and collection
@@ -47,7 +64,7 @@ class DatabaseOps():
             
 
             # Insert the individual rule data into MongoDB
-            collection.insert_one(rule_dict)
+            # collection.insert_one(rule_dict)
         
 
         return json.loads(rules.model_dump_json()) , message_id
