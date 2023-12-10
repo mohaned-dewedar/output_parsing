@@ -9,8 +9,8 @@ from datetime import datetime
 
 class DatabaseOps():
     client = None
-    db = "SWG"
-    collection = "Rules"
+    db = "YouDBName"
+    collection = "YourCollectionName"
 
     @classmethod
     def connect(cls):
