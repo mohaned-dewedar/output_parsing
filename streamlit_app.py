@@ -15,7 +15,7 @@ def setup_once():
     Will be cached for the lifetime of the streamlit app
     """
     load_dotenv()
-    model_name = 'gpt-4-1106-preview'
+    model_name = 'gpt-4.1-nano'
     # model_name = 'gpt-3.5-turbo'
 
     DatabaseOps.connect()
