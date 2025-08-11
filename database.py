@@ -64,7 +64,7 @@ class DatabaseOps():
             
 
             # Insert the individual rule data into MongoDB
-            # collection.insert_one(rule_dict)
+            collection.insert_one(rule_dict)
         
 
         return json.loads(rules.model_dump_json()) , message_id
